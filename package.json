@@ -1,0 +1,25 @@
+{
+  "name": "ryp",
+  "displayName": "ryp",
+  "description": "Ryve Plus language syntax highlighting",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "ryp",
+      "aliases": ["Ryve Plus", "ryp"],
+      "extensions": [".ryp"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "ryp",
+      "scopeName": "",
+      "path": "./syntaxes/ryp.tmLanguage.json"
+    }]
+  }
+}

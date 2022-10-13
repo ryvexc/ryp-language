@@ -1,0 +1,13 @@
+WHITESPACE      [ \t\n] 
+
+PLUS            +
+MINUS           -
+MULTIPLY        *   
+DIVIDE          /
+LPAREN          (
+RPAREN          )
+LBRACKET        {
+RBRACKET        }
+IDENTIFIER      y, x, etc
+LITERAL         1 | 0.0 | TRUE | "RYVE"
+KEYWORDS        

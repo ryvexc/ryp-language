@@ -1,0 +1,67 @@
+[avaible data types]
+i8  =   byte
+i16 =   short
+i32 =   integer
+i64 =   long
+str =   string
+char=   character
+
+[optional: unsigned (!)] <type> [optional: nullable (?)]
+example:
+    i32?    ->  nullable integer
+    i16     ->  short
+    !i16    ->  unsigned short
+    !i64?   ->  nullable unsigned short;
+
+examples:
+[NUMERIC]
+i8      =       INTEGER VALUE WITH 8 BIT MAXIMUM (1 BYTE)
+i16     =       INTEGER VALUE WITH 16 BIT MAXIMUM (2 BYTES)
+i32     =       INTEGER VALUE WITH 32 BIT MAXIMUM (4 BYTES)
+i64     =       INTEGER VALUE WITH 64 BIT MAXIMUM (8 BYTES)
+
+@unsigned
+!i8     =       UNSIGNED INTEGER VALUE WITH 8 BIT MAXIMUM (1 BYTE)
+!i16    =       UNSIGNED INTEGER VALUE WITH 16 BIT MAXIMUM (2 BYTES)
+!i32    =       UNSIGNED INTEGER VALUE WITH 32 BIT MAXIMUM (4 BYTES)
+!i64    =       UNSIGNED INTEGER VALUE WITH 64 BIT MAXIMUM (8 BYTES)
+
+@nullable
+i8?     =       NULLABLE INTEGER VALUE WITH 8 BIT MAXIMUM (1 BYTE)
+i16?    =       NULLABLE INTEGER VALUE WITH 16 BIT MAXIMUM (2 BYTES)
+i32?    =       NULLABLE INTEGER VALUE WITH 32 BIT MAXIMUM (4 BYTES)
+i64?    =       NULLABLE INTEGER VALUE WITH 64 BIT MAXIMUM (8 BYTES)
+
+@unsigned nullable
+!i8?    =       NULLABLE UNSIGNED INTEGER VALUE WITH 8 BIT MAXIMUM (1 BYTE)
+!i16?   =       NULLABLE UNSIGNED INTEGER VALUE WITH 16 BIT MAXIMUM (2 BYTES)
+!i32?   =       NULLABLE UNSIGNED INTEGER VALUE WITH 32 BIT MAXIMUM (4 BYTES)
+!i64?   =       NULLABLE UNSIGNED INTEGER VALUE WITH 64 BIT MAXIMUM (8 BYTES)
+# default value: 0
+
+[NUMERIC - FLOATING POINT]
+f32     =       FLOAT
+f64     =       DOUBLE
+
+@unsigned
+!f32     =       UNSIGNED FLOAT
+!f64     =       UNSIGNED DOUBLE
+
+@nullable
+f32?     =       NULLABLE FLOAT
+f64?     =       NULLABLE DOUBLE
+
+@unsigned nullable
+!f32?     =       UNSIGNED NULLABLE FLOAT
+!f64?     =       UNSIGNED NULLABLE DOUBLE
+# default value: 0.0
+
+[NOT NUMERIC]
+str     =   STRING
+!str    =   CONST CHAR*
+str?    =   NULLABLE STRING
+!str?   =   bruh, for what?.
+
+char    =   CHARACTER
+char?   =   NULLABLE CHARACTER
+!char?  =   negative ascii?? really??.
