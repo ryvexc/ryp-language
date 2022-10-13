@@ -1,23 +1,7 @@
 #include<string>
 #include<sstream>
 
-std::string stringize(char __C) {
-    std::stringstream ss;
-    std::string tmp;
-    ss << __C;
-    ss >> tmp;
-    return tmp;
-}
-
-std::string stringize(int __C) {
-    std::stringstream ss;
-    std::string tmp;
-    ss << __C;
-    ss >> tmp;
-    return tmp;
-}
-
-std::string stringize(double __C) {
+template<typename T>std::string stringize(T __C) {
     std::stringstream ss;
     std::string tmp;
     ss << __C;

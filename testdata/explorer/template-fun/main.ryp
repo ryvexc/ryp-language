@@ -1,0 +1,11 @@
+import io;
+
+template<typename T> fn printer(arg: <T>) -> void {
+    io::println(arg);
+}
+
+fn main() -> i32 {
+    printer("Hello");
+    printer(334);
+    printer(4.5);
+}

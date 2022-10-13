@@ -1,50 +1,7 @@
 import default iostream;
 
 namespace io {
-    fn println(arg: i8) -> void {
+    template<typename T> fn println(arg: <T>) -> void {
         std::cout << arg << std::endl;
-    }
-
-    fn println(arg: i16) -> void {
-        std::cout << arg << std::endl;
-    }
-    
-    fn println(arg: i32) -> void {
-        std::cout << arg << std::endl;
-    }
-
-    fn println(arg: i64) -> void {
-        std::cout << arg << std::endl;
-    }
-
-    fn println(arg: bool) -> void {
-        std::cout << arg << std::endl;
-    }
-
-    fn println(arg: str) -> void {
-        std::cout << arg << std::endl;
-    }
-
-    fn println(arg: cstr) -> void {
-        std::cout << arg << std::endl;
-    }
-
-    fn println(arg: list->cstr) -> void {
-        std::cout << arg << std::endl;
-    }
-
-    fn println(arg: list->cptrstr) -> void {
-        std::cout << arg << std::endl;
-    }
-
-    fn println(arg: ui32) -> void {
-        std::cout << arg << std::endl;
-    }
-
-    template<typename T>fn println(vec: <T>) -> void {
-        std::cout << "[";
-        for(var i: i32 = 0; i<vec.size(); i++) 
-            std::cout << vec[i] << (i < vec.size() - 1 ? "," : "");
-        std::cout << "]" << std::endl;
     }
 }

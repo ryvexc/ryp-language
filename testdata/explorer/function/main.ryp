@@ -1,0 +1,9 @@
+import io
+
+fn say_hello(name: str) -> void {
+    io::println("Hello, im "+name+"!");
+}
+
+fn main() -> i32 {
+    say_hello("Ryve");
+}

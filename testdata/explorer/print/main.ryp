@@ -1,0 +1,19 @@
+// import input/output library
+import io
+// import string library
+import string
+
+// define main function
+fn main(argc: i32, argv: list->char?*) -> i32 {
+    // printing hello world
+    io::println("Hello World!");
+    io::println("Hello RYP!");
+
+    // if you wanna insert int, you need to convert it into string with string library
+    io::println("Im integer " + to_str(5));
+    var x: i32 = 100;
+    io::println("im from variable! " + to_str(x));
+
+    // return 0
+    return 0;
+}

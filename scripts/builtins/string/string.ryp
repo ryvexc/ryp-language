@@ -1,0 +1,9 @@
+import default sstream;
+
+template<typename T>fn to_str(s: <T>) -> str {
+    std::stringstream ss;
+    var dmp: str?;
+    ss << s;
+    ss >> dmp;
+    return dmp;
+}

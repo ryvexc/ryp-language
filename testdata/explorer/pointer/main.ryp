@@ -1,0 +1,22 @@
+import io
+import string
+
+// main method
+fn main() -> i32 {
+    // setuping variables
+    var x: i32 = 5;
+
+    // creating pointer
+    var xptr: i32* = &x;
+
+    // printing the first value of variable
+    io::println("first value: " + to_str(x));
+    // printing the address
+    io::println("address: " + to_str(&x));
+
+    // changing the value
+    *xptr = 10;
+
+    // print the new value
+    io::println("new value: " + to_str(x));
+}

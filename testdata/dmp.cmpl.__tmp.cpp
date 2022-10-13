@@ -19,46 +19,14 @@ typedef std::string str;
 typedef const char* cptrstr;
 typedef const char cstr;
 #include<iostream>
-namespace io{
-
-void println(i8 arg){
-std::cout<<arg<<std::endl;}
-
-void println(i16 arg){
-std::cout<<arg<<std::endl;}
-
-void println(i32 arg){
-std::cout<<arg<<std::endl;}
-
-void println(i64 arg){
-std::cout<<arg<<std::endl;}
-
-void println(bool arg){
-std::cout<<arg<<std::endl;}
-
-void println(str arg){
-std::cout<<arg<<std::endl;}
-
-void println(cstr arg){
-std::cout<<arg<<std::endl;}
-
-void println(cstr arg[]){
-std::cout<<arg<<std::endl;}
-
-void println(cptrstr arg[]){
-std::cout<<arg<<std::endl;}
-
-void println(ui32 arg){
-std::cout<<arg<<std::endl;}
-template<typename T>
-void println(T vec){
-std::cout<<"[";for(
-i32 i = 0;i<vec.size();i++)std::cout<<vec[i]<<(i<vec.size()-1?",":"");std::cout<<"]"<<std::endl;}
+namespace  io {
+    template<typename  T> 
+void println(T arg){
+        std::cout << arg << std::endl;    }
 }
-
-i32 tambah(i32 x, i32 y){
-return x+y;}
+;template<typename  T> 
+void printer(T arg){
+    io::println(arg);}
 
 i32 main( ){
-
-i32 x = 5;io::println("Hello World");io::println("Iqbal");io::println(tambah(30,90));}
+    printer("Hello");    printer(334);    printer(4.5);}

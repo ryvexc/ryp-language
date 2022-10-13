@@ -1,0 +1,14 @@
+import io
+import string
+
+fn change_value(variable: i32*, new_value: i32) -> void {
+    *variable = new_value;
+}
+
+fn main() -> i32 {
+    var x: i32 = 100;
+    io::println("x before: " + to_str(x));
+    change_value(&x, 200); // dont forget to send the address
+    io::println("x after: " + to_str(x));
+
+}

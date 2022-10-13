@@ -10,9 +10,8 @@
 //     for(auto i : (*arr)) std::cout << i << std::endl;
 // }
 
+#include<vector>
+
 auto main(int argc, char* argv[]) -> int {
-    std::string input;
-    getline(std::cin, input);
     
-    std::cout << Parser(lexical_analyzer(input)).parse() << std::endl;
 }

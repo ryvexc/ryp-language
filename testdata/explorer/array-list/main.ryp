@@ -1,0 +1,11 @@
+import io
+
+fn main() -> i32 {
+    // how to create a list
+    // var <var-name>: list-><var-type> = [<initial-value>];
+
+    var mylist: list->i32 = [5];
+    for(var i: i32 = 0; i<5; i++) {
+        io::println(mylist[i]);
+    }
+}

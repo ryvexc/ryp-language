@@ -7,17 +7,35 @@
 #include<bits/stdc++.h>
 #include "../scripts/default_type_value.cpp"
 #include "compile.cpp"
+#include "config.cpp"
 
 int __block_stack = 0;
 
+std::vector<token> ignore_space(int pos, std::vector<token> tokens) {
+    std::vector<token>* dmp = &tokens;
+    std::cout << "[BEFORE]" << std::endl;
+    int it = 0;
+    print_tokens(tokens);
+    for(it = pos; (*dmp)[it].name != "SEMICOLON" && (*dmp)[it].name != "LBRACKET"; it++) {
+        if((*dmp)[it].name == "SPACE") {
+            (*dmp).erase((*dmp).begin() + it);
+            it--;
+        } 
+    }
+    std::cout << "[AFTER]" << std::endl;
+    std::cout << "iterator: " << it << std::endl;
+    print_tokens(*dmp);
+    return *dmp;
+}
+
 void assign_cpp_code(std::vector<std::string> __str_line) {
     // include data_types
-    ifstream __data_type_data("../scripts/runtime/lang_default_datatype.cpp");
+    ifstream __data_type_data(ryp_path+"/scripts/runtime/lang_default_datatype.cpp");
     std::string line, line_stack;
     while(getline(__data_type_data, line)) line_stack += (line + "\n");
     __data_type_data.close();
 
-    ifstream __check_value_data("../scripts/runtime/store_value.check.cpp");
+    ifstream __check_value_data(ryp_path+"../scripts/runtime/store_value.check.cpp");
     while(getline(__check_value_data, line)) line_stack += (line + "\n");
     __check_value_data.close();
 
@@ -40,6 +58,8 @@ class CVT_CPP {
 
         for(int i=0; i<(*tokens).size(); i++) {
             if((*tokens)[i].name == "NEWLINE") __line++;
+            else if((*tokens)[i].name == "SPACE") 
+                converted_code_stack.push_back(" ");
             else if((*tokens)[i].name == "LBRACKET") {
                 converted_code_stack.push_back("{");
                 converted_code_stack.push_back("\n");
@@ -51,6 +71,7 @@ class CVT_CPP {
                 __block_stack--;
             }
             else if((*tokens)[i].name == "KEYWORD" && (*tokens)[i].value == "var") {
+                *tokens = ignore_space(i, *tokens);
                 bool has_value = false;
                 std::vector<std::string> var_stack;
                 __variable var_dmp;
@@ -60,20 +81,24 @@ class CVT_CPP {
                 for(;(*tokens)[i].name != "COLON"; i++) {
                     if((*tokens)[i].name == "IDENTIFIER") var_stack.push_back((*tokens)[i].value);
                 } i++;
-                
+
                 if((*tokens)[i].name == "KEYWORD" && (*tokens)[i].value == "list") {
                     i++;
-                    if((*tokens)[i].name == "ARROW_R") is_list = true;
-                    i++;
+                    if((*tokens)[i].name == "ARROW_R") {
+                        is_list = true;
+                        i++;
+                    }
                 }
 
                 if((*tokens)[i].name == "DATA_TYPE" && (*tokens)[i].value != "void") {
                     var_dmp.__data_type = (*tokens)[i].value;
                     i++;
-                } else {
-                    std::cout << "WHAT THE FUCK?" << std::endl;
-                    exit(0);
-                }
+                } 
+                // else {
+                //     std::cout << "please define the variable type." << std::endl;
+                //     exit(0);
+                // }
+
                 if((*tokens)[i].name == "QUESTION_MARK") {
                     var_dmp.nullable = true;
                     i++;
@@ -85,11 +110,12 @@ class CVT_CPP {
                 if((*tokens)[i].name == "EQUAL") {
                     i++;
                 }
-
+                
                 // LOAD VAR VALUE
                 std::string list_len = "";
                 if(is_list && (*tokens)[i].name == "L_SBRACKET") {
                     i++;
+                    
                     for(;(*tokens)[i].name != "R_SBRACKET"; i++)
                         list_len += (*tokens)[i].value;
                 }
@@ -139,6 +165,8 @@ class CVT_CPP {
                 }
             } 
             else if((*tokens)[i].name == "KEYWORD" && (*tokens)[i].value == "fn") {
+                *tokens = ignore_space(i, *tokens);
+
                 struct var_tok {
                     std::string name;
                     std::string type;
@@ -175,7 +203,7 @@ class CVT_CPP {
                         if((*tokens)[i].name == "ARROW_R")
                             is_list = true;
                     }
-
+                    
                     if((*tokens)[i].name == "COMMA") {
                         function_args.push_back({arg_name + (is_list ? "[]" : ""), arg_type});
                     } else if((*tokens)[i].name == "RPAREN") {
@@ -209,6 +237,7 @@ class CVT_CPP {
                 converted_code_stack.push_back(cpp_format);
             }
             else if((*tokens)[i].name == "KEYWORD" && (*tokens)[i].value == "import") {
+                *tokens = ignore_space(i, *tokens);
                 i++;
                 if((*tokens)[i].name == "KEYWORD" && (*tokens)[i].value == "default") {
                     i++;
@@ -225,7 +254,7 @@ class CVT_CPP {
                     converted_code_stack.push_back(cpp_format);
                 } else if ((*tokens)[i].name == "IDENTIFIER") {
                     system("pwd");
-                    std::string def_lib_path = "../scripts/builtins/";
+                    std::string def_lib_path = ryp_path+"/scripts/builtins/";
                     std::string __include_path = def_lib_path + (*tokens)[i].value + "/" +(*tokens)[i].value+ ".ryp";
                     ifstream to_import(__include_path);
                     if(!to_import.is_open()) std::cout << "no std lib for " << (*tokens)[i].value << std::endl;

@@ -1,0 +1,59 @@
+import default vector;
+import io;
+
+void merge(std::vector<int>* left_arr, std::vector<int>* right_arr, std::vector<int>* arr) {
+    var left_len: i32 = (*arr).size() / 2;
+    var right_len: i32 = (*arr).size() - left_len;
+
+    int l_pos = 0, r_pos = 0, a_pos = 0;
+    while(l_pos < left_len && r_pos < right_len) {
+        if((*left_arr)[l_pos] < (*right_arr)[r_pos]) {
+            (*arr)[a_pos] = (*left_arr)[l_pos];
+            a_pos++;
+            l_pos++;
+        } else {
+            (*arr)[a_pos] = (*right_arr)[r_pos];
+            a_pos++;
+            r_pos++;
+        }
+    }
+
+    while(l_pos < left_len) {
+        (*arr)[a_pos] = (*left_arr)[l_pos];
+        a_pos++;
+        l_pos++;
+    }
+
+    while(r_pos < right_len) {
+        (*arr)[a_pos] = (*right_arr)[r_pos];
+        a_pos++;
+        r_pos++;
+    }
+}
+
+void merge_sort(std::vector<int>* vec) {
+    if((*vec).size() <= 1) return;
+    std::vector<int> left_arr;
+    var left_len: i32 = (*vec).size() / 2;
+    std::vector<int> right_arr;
+    var right_len: i32 = (*vec).size() - left_len;
+    
+    for(var i: i32=0; i<(*vec).size(); i++) {
+        if(i < left_len) 
+            left_arr.push_back((*vec)[i]);
+        else 
+            right_arr.push_back((*vec)[i]);
+    }
+
+    merge_sort(&left_arr);
+    merge_sort(&right_arr);
+    merge(&left_arr, &right_arr, vec);
+}
+
+fn main() -> i32 {
+    std::vector<int> vec {23, 6, 122, -9, -4, 8};
+    io::println(vec);
+    merge_sort(&vec);
+    io::println(vec);
+    return 0;
+}

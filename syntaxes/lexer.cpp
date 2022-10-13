@@ -159,7 +159,7 @@ token generate_special_op(char __C) {
             _tok_name = "DECREMENT";
         } else if(c_token == '=') {
             stream += "=";
-            _tok_name == "DECREMENT_BY";
+            _tok_name = "DECREMENT_BY";
         } else {
             __pos--;
         }
@@ -209,7 +209,10 @@ std::vector<token> lexical_analyzer(std::string __stream) {
     std::vector<token> TOKENS;
     
     while(current_char != 27) {
-        if(current_char == '\t'|| current_char == ' ');
+        if(current_char == '\t')
+            TOKENS.push_back({"TAB", stringize("\t")});
+        else if(current_char == ' ') 
+            TOKENS.push_back({"SPACE", stringize(" ")});
         else if(current_char == '\n')
             TOKENS.push_back({"NEWLINE", stringize(current_char)});
         else if(current_char == '+')

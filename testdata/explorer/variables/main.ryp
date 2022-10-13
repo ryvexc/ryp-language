@@ -1,0 +1,21 @@
+import io
+import string
+
+fn main() -> i32 {
+    // how to make a variable
+    // var <var-name>: [opt: unsigned?]<var-type>[opt: nullable?] = <value>;
+
+    var my_string: str = "String 1"; // normal string
+    var nullable_string: str?;       // nullable string
+    // var force_null: str;          // error, force_null isn't nullable
+    
+    var my_int: i32 = 5;            // normal int
+    var my_null_int: i32?;          // nullable int
+
+    io::println(my_string);
+    io::println(nullable_string);
+    io::println(my_int);
+    io::println(my_null_int);
+
+    // see for documentation
+}
