@@ -1,4 +1,8 @@
 #include<string>
+#include<array>
+#include<utility>
+#include<memory>
+#include<type_traits>
 
 typedef __INT8_TYPE__ i8;
 typedef __INT16_TYPE__ i16;
@@ -18,3 +22,7 @@ typedef __INT8_TYPE__ byte;
 typedef std::string str;
 typedef const char* cptrstr;
 typedef const char cstr;
+
+template<typename T> i32 lenof(T arr) {
+    return arr.size();
+}

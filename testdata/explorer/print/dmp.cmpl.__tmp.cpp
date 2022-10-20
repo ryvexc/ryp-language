@@ -24,6 +24,11 @@ namespace  io {
 void println(T arg){
         std::cout << arg << std::endl;    }
 }
-#include<stringfnmain()->i32{std::stringstrcpp="Ini C++ String">
-    
-str rypstr = "Ini ryp string";    io::println(strcpp);    std::cout << rypstr << std::endl;    return  0;}
+#include<sstream>
+template<typename  T>
+str to_str(T s){
+    std::stringstream ss;    
+str dmp;    ss << s;    ss >> dmp;    return  dmp;}
+
+i32 main(i32 argc, char* argv[]){
+    io::println("Aku Daud");    return  0;}

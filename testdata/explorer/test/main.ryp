@@ -1,0 +1,29 @@
+import io;
+
+struct Cewe 
+{
+    var ribet: bool?;
+};
+
+class TestClass 
+{
+    public: 
+    static fn hello_world() -> void 
+    {
+        io::println("Hello World!");
+    }
+};
+
+fn print_struct(cw: <Cewe>) -> void 
+{
+    if(cw.ribet) io::println("Emang");
+    else io::println("Lu ngarep cewe itu ga ribet?");
+}
+
+fn main(argc: i32, argv: list->char*) -> i32 
+{
+    Cewe cewe_1 = {false};
+    TestClass::hello_world();
+    print_struct(cewe_1);
+    return 0;
+}

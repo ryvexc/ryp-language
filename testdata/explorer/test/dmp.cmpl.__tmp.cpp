@@ -1,4 +1,8 @@
 #include<string>
+#include<array>
+#include<utility>
+#include<memory>
+#include<type_traits>
 
 typedef __INT8_TYPE__ i8;
 typedef __INT16_TYPE__ i16;
@@ -18,12 +22,18 @@ typedef __INT8_TYPE__ byte;
 typedef std::string str;
 typedef const char* cptrstr;
 typedef const char cstr;
+
+template<typename T> i32 lenof(T arr) {
+    return arr.size();
+}
 #include<iostream>
 namespace  io {
     template<typename  T> 
 void println(T arg){
         std::cout << arg << std::endl;    }
 }
-#include<stringfnmain()->i32{std::stringstrcpp="Ini C++ String">
+;
+i32 main(void ){
     
-str rypstr = "Ini ryp string";    io::println(strcpp);    std::cout << rypstr << std::endl;    return  0;}
+std::array<i32, 10> arr;    io::println(lenof(arr));    io::println(arr.size());    const 
+i32 i = 5;    io::println(i);    i = 9;    io::println(i);}

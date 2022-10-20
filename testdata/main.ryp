@@ -1,13 +1,13 @@
 import io;
+import default string;
 
-fn main() -> i32 {
-    std::string cpp_str1 = "Im C++ String!";
-    var x: str = "Im Ryp String!";
-    std::string cpp_str2 = "I can use 2 syntax!";
-    var y: str = "We are the same!";
 
-    io::println(cpp_str1);
-    io::println(x);
-    io::println(cpp_str2);
-    io::println(y);
+fn main() -> i32{
+    std::string strcpp = "Ini C++ String";
+    var rypstr: str = "Ini ryp string";
+
+    io::println(strcpp);
+    std::cout << rypstr << std::endl;
+
+    return 0;
 }

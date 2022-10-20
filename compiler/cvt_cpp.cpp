@@ -15,7 +15,6 @@ std::vector<token> ignore_space(int pos, std::vector<token> tokens) {
     std::vector<token>* dmp = &tokens;
     std::cout << "[BEFORE]" << std::endl;
     int it = 0;
-    print_tokens(tokens);
     for(it = pos; (*dmp)[it].name != "SEMICOLON" && (*dmp)[it].name != "LBRACKET"; it++) {
         if((*dmp)[it].name == "SPACE") {
             (*dmp).erase((*dmp).begin() + it);
@@ -24,7 +23,6 @@ std::vector<token> ignore_space(int pos, std::vector<token> tokens) {
     }
     std::cout << "[AFTER]" << std::endl;
     std::cout << "iterator: " << it << std::endl;
-    print_tokens(*dmp);
     return *dmp;
 }
 
@@ -131,7 +129,6 @@ class CVT_CPP {
                 var_dmp.block_level = __block_stack;
                 for(int i=0; i<var_stack.size(); i++) {
                     var_dmp.name = var_stack[i];
-                    if(is_list) var_dmp.name += ("["+list_len+"]");
                     if(i < var_stack.size() - 1) var_dmp.value = "";
                     var_dmp.value = tmp_value;
                     print_var_info(var_dmp);
@@ -158,7 +155,9 @@ class CVT_CPP {
                             default_value = NUMERIC;
                     }
 
-                    std::string cpp_format = var_dmp.__data_type + " " + var_dmp.name + (!is_list && !var_dmp.nullable? " = ": "") + (has_value ? var_dmp.value_stack : default_value) + ";";
+                    std::string cpp_format;
+                    if(is_list) cpp_format = "std::array<"+ var_dmp.__data_type +", "+list_len+"> " + var_dmp.name; 
+                    else cpp_format = var_dmp.__data_type + " " + var_dmp.name + (!is_list && !var_dmp.nullable? " = ": "") + (has_value ? var_dmp.value_stack : default_value) + ";";
 
                     converted_code_stack.push_back("\n");
                     converted_code_stack.push_back(cpp_format);
@@ -277,10 +276,7 @@ class CVT_CPP {
 
         if(!silent) {
             assign_cpp_code(converted_code_stack);    
-            print_tokens(*tokens);
-            std::cout << "executing code..." << std::endl;
-            std::cout << "======================================================" << std::endl;
-            compile();
+            compile(ryp_path);
         }
     }
 };

@@ -1,0 +1,43 @@
+// import default vector;
+import io;
+
+// struct ArekRPA {
+//     var tolol: bool?;
+//     var jeneng: str?;
+// };
+
+// class RPA {
+//     private:
+//     std::vector<ArekRPA> data {
+//         {true, "Abi"},
+//         {true, "Amrip"}
+//     };
+
+//     public:
+//     fn show() -> void {
+//         for(ArekRPA arek : this->data) {
+//             io::println("==========================");
+//             io::println(arek.jeneng);
+//             io::println(arek.tolol);
+//         }
+//     }
+// };
+
+// fn main(argc: i32, argv: list->char*) -> i32 {
+//     RPA rpa;
+//     rpa.show();
+//     var my_list: list->i32[30];
+//     io::println(lenof(my_list));
+//     io::println(my_list); // using size
+//     return 0;
+// }
+
+fn main(<void>) -> i32 {
+    var arr: list->i32[10];
+    io::println(lenof(arr));
+    io::println(arr.size());
+    const var i: i32 = 5;
+    io::println(i);
+    i = 9;
+    io::println(i);
+}
